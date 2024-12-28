@@ -4,24 +4,67 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    background: linear-gradient(135deg, #4c6ef5, #b197fc);
+    background: linear-gradient(135deg, #1e1e2f, #3a3a52);
     padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 15px #4c6ef5;
+    border: 2px solid rgba(76, 110, 245, 0.5);
+    overflow: hidden;
 }
 
+.spin-wheel-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0.7;
+    z-index: -1;
+}
 
 .wheel {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    border: 5px solid #343a40;
-    background: radial-gradient(circle, #ffffff, #dee2e6);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 5px solid #2a2a3a;
+    background: radial-gradient(circle, #444466, #1e1e2f);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px #5c7cfa;
     transition: transform 3s ease-out;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+.wheel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(
+        from 0deg,
+        #5c7cfa 0%,
+        #4c6ef5 25%,
+        #74c0fc 50%,
+        #5c7cfa 75%,
+        #4c6ef5 100%
+    );
+    opacity: 0.15;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px #5c7cfa;
+    }
+    50% {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 35px #74c0fc;
+    }
 }
 
 .wheel-segment {
@@ -29,6 +72,7 @@
     width: 50%;
     height: 50%;
     transform-origin: 100% 100%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .wheel-text {
@@ -36,11 +80,12 @@
     top: 50%;
     left: 50%;
     transform-origin: 0 0;
-    font-size: 14px;
+    font-size: 1.2rem;
     font-weight: bold;
     text-align: center;
     color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(92, 124, 250, 0.6);
+    font-family: 'Orbitron', sans-serif;
 }
 
 .center-arrow {
@@ -48,13 +93,12 @@
     height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 20px solid #000;
+    border-bottom: 25px solid black;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) ;
+    transform: translate(-50%, -50%);
     z-index: 3;
-
 }
 
 .popout {
@@ -62,12 +106,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #ffffff, #f8f9fa);
-    border: 2px solid #343a40;
+    background: linear-gradient(135deg, #2a2a3a, #1e1e2f);
+    border: 2px solid rgba(92, 124, 250, 0.5);
     padding: 30px;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px #5c7cfa;
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff;
 }
 
 button {
@@ -78,18 +124,22 @@ button {
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    background: linear-gradient(135deg, #74c0fc, #5c7cfa);
+    background: linear-gradient(135deg, #6a4cfa, #4826db);
     color: #ffffff;
-    transition: transform 0.2s, background 0.3s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(106, 76, 250, 0.6), 0 0 10px rgba(72, 38, 219, 0.6);
+    font-family: 'Orbitron', sans-serif;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #5c7cfa, #364fc7);
+    background: linear-gradient(135deg, #4826db, #2a1aba);
     transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(72, 38, 219, 0.8), 0 0 15px rgba(42, 26, 186, 0.8);
 }
 
 button:active {
     transform: scale(1.05);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(72, 38, 219, 0.6);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
